@@ -1,0 +1,145 @@
+Link do projeto:
+http://localhost:8080/projeto-jpa-jsf/index.jsf
+
+MAPEAMENTO OBJETO RELACIONAL (ORM)
+
+Pode-se trabalhar com apenas o JPA ou com o JPA e o Hibernate.
+
+O Hibernate abstrai o seu código SQL, toda a camada JDBC e o SQL será gerado em tempo de execução.
+
+
+    @Entity            AUTOMATIZA PROCESSOS          SQL
+  Classe Usuário   ----------------------------> Tabela Usuário
+    [JAVA]                                          [TABELA]
+
+LINGUAGEM HQL
+O Hibernate vem com uma poderosa linguagem de consulta (HQL) que é muito parecida com o SQL. No entanto, comparado com 
+o SQL o HQL é totalmente orientado à objetos, e compreende noções de herança, polimorfismo e associações.
+
+Criar um projeto Maven (OBS. Não esquecer de configurar o java compiler e BuildPath com o JDK da sua máquina instalado - Clica com o botão 
+direito do mouse em cima do projeto, vai em properties e procure as abas de configuração dita acima). 
+
+Vou adiicionar as dependencias do junit, do postgresql (version 9.5) e o hibernate/jpa.
+
+IMPORTANTE!!! Temos que criar um arquivo de persistence.xml do JPA, e para fazer isso, vai com o botão direito do 
+mouse em cima do projeto e clica em 'porperties' depois vai em 'Project Facets' e clica em 'Convert to Faceted form...' 
+e marque a opção 'JPA'. Depois procure a aba 'Runtimes' e coloque o jdk que está instalado e por fim 'apply and close'.
+
+É nesse arquivo, persistence.xml, que irá configurar toda a comunicação com o banco de dados.
+
+----------------------------------------
+
+Configurando as propriedades do arquivo persistence.xml para a comunicação com o banco de dados.
+
+1 - O nome do Driver do banco de dados no caso postgresql
+<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+
+2 - Endereço (url) para criar o banco de dados cujo nome vai ser projetoJpaHibernate
+<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/projetoJpaHibernate"/>
+OBS. Não esquece de criar o banco de dados 'projetoJpaHibernate' no postgresql
+
+3 - Para o hibernate manipular a parte de mapeamento de objeto relacional vai ser preciso dizer o tipo de dialeto usado
+<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
+4 - O nome do usuário do banco de dados
+<property name="hibernate.connection.username" value="postgres"/>
+
+5 - Senha (password) do banco de dados
+<property name="hibernate.connection.password" value="admin"/>
+
+6 - Propriedade que ajuda a atualizar automaticamente as manipulações feitas no banco de dados
+    (Por exemplo, criar automaticamente as tabelas no banco de dados) 
+<property name="hibernate.hbm2ddl.auto" value="update"/>
+
+----------------------------------------
+
+A classe HibernateUtil vai ser chamada para quando o projeto subir ou para quando fazer alguma manipulação no 
+banco de dados. Vai ser essa classe que irá ler o arquivo persistence.xml, deixando instanciada a conexão com o BD.
+
+<version>5.2.6.Final</version>
+
+----------------------------------------
+
+É preciso declarar o arquivo de entidade para a persistencia no banco de dados. Essa declaração é a tag class
+e o seu valor é o caminho dessa entidade. Essa declaração é feito no arquivo persistence.xml.
+Ex: <class>br.com.projetoJpaHibernate.model.UsuarioPessoa</class>
+
+----------------------------------------
+
+Os métodos tem o objetivo de garantir que quem instanciar o DaoGeneric vai ter que ser passado como parâmetro 
+um EntityManager. Portanto, já podemos dizer que toda vez que for instanciado um DAO logo será passado para 
+ele um EntityManager. 
+
+Partindo do ponto que foi instanciado um DAO e podendo ser fornecido para ele um EntityManager, logo 
+poderemos fazer todas as funcionalidades como cadastrar, alterar, remover e buscar, e essas funcionalidades 
+serão encapsuladas pelo Hibernate dentro de métodos como:
+
+  --> persist() = persiste no banco de dados.
+  
+  --> merge() = Este método é inteligente, pois se o objeto Usuario existir a propriedade id vai tentar 
+                fazer um update e se ele não existir uma propriedade id vai fazer um insert, o próprio 
+                EntityManager vai resolver isso automaticamente. Portanto, logo não vamos mais precisar 
+                dos métodos cadastrar e alterar bastará apenas o método salvar para ele fazer as funções 
+                do update (alterar) e do insert (inserir).
+  
+  --> find(Classe.class, id) = Para busca vamos usar a seguinte expressão “Classe.class” para utilizar a 
+                               Classe que deseja buscar como parâmetro e o “id” para utilizar a propriedade 
+                               id como parâmetro. Automaticamente a funcionalidade find vai fazer a busca 
+                               do objeto pelo id. Vai buscar apenas um valor de objeto.
+
+                               
+  -->  	Para buscar todos os valores, ou seja, uma consulta com mais de um valor, precisaremos manipular 
+uma linguagem JPQL que é exclusiva do JPA, vamos manipular através de uma Query (Classe persistence). 
+Exemplo pode existir um universo de entity (entidades) e cada entity está vinculado com uma tabela do 
+banco de dados, e esses entity podem estar relacionados entre si e assim como também na tabela, eles podem 
+estar relacionados entre si. Podemos dizer que existi uma relação entre o Objeto Cidade e o Objeto Estado, 
+e essa relação tem uma multiplicidade de um para muitos, ou seja, um Estado pode ter muitas Cidades, 
+portanto, posso confirmar que um Estado está vinculado com muitas Cidades, como também posso dizer que um 
+registro da tabela Estado está vinculado com mais de um registro da tabela Cidade (pensamento em banco de dados). 
+Logo, como iremos fazer as consultas neste universo de entity? No caso dos registros entre o Estado e a Cidade é 
+fácil, pois podemos usar SQL, mas no mundo do JPA temos o JPQL que é a linguagem SQL das entidades, ou seja, você 
+não vai mais fazer as consultas em torno do banco de dados, agora você vai fazer as consultas em torno das entidades. Vamos inserir a JPQL dentro de um objeto Usuário e o resultado desta consulta vai trazer uma coleção de objetos usuários, para cada usuário que existi no banco de dados vamos obter um registro dessa tabela.  
+
+OBS: Linguagem HPL é uma linguagem mais especifica para o Hibernate para consulta de registro no banco de dados.
+
+Linguagem JPQL é uma linguagem especifica para qualquer framework JPA.
+
+Exemplo:O SQL faz consultas da seguinte maneira:  | Exemplo:O JPQL faz consultas da seguinte maneira:
+Select * From usuario;                            | Select u From Usuario u;
+
+                                                    “u” representa todos os campos do objeto u.
+                                                    Usuario é o nome da Classe (com letra maiúscula).
+                                                    “u” representa a instancia da Classe Usuário.
+
+---------------------------
+
+Named Query é usada para queryes específicas. Essas queryes são adicionadas no arquivo de entidade.
+
+---------------------------
+
+Para o relacionamento entre as entidades é preciso mapear para ambos os relacionamentos.
+
+Para a entidade TelefoneUsuarioPessoa:
+
+   @ManyToOne(optional = false, fetch = FetchType.EAGER)
+   private UsuarioPessoa usuarioPessoa;
+   
+Para a entidade UsuarioPessoa:
+
+   @OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)
+   private List<TelefoneUsuarioPesssoa> telefones;
+
+OBS. fetch = FetchType.EAGER --> Para poder consultar, ou seja, trazer numma lista os dados do usuário e do telefone
+
+Modelo Relacional
+
+UsuarioPessoa(id, nome, sobrenome, email, login, senha, idade)
+id referencia ao UsuarioPessoa.
+
+TelefoneUsuarioPessoa(id, tipo, numero, usuarioPessoa)
+id referencia TelefoneUsuarioPessoa
+usuarioPessoa referencia UsuarioPessoa(id)
+
+
+
+  
