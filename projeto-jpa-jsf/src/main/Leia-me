@@ -288,4 +288,13 @@ que estiver terá a respectiva classe do java. É possivel trabalhar com os comp
 ----------------------------------------------------------------//----------------------------------------------------------------
 
 A navegação explicita é feito dentro do arquivo faces-config.xml
+
+----------------------------------------------------------------//----------------------------------------------------------------
+
+Vale ressaltar que o atributo 'value' da dataTable corresponde que os dados virão de uma lista. E essa lista vai ser 
+carregada no managed bean. Lembrando que vamos criar um objeto do Classe List do tipo UsuarioPessoa e usar o seu 
+método getters para injetar os dados da tela para dentro do objeto. Vamos capturar o objeto e jogar na tela através
+do seu atributo 'list' do método getList.
+
+
   

@@ -1,5 +1,8 @@
 package br.com.projetoJpaJsf.managedBean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -13,6 +16,7 @@ public class UsuarioPessoaManagedBean {
 	/* Criando e instanciando objeto */
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
 	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<>();
+	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
 
 	
 	/* Getters e Setters para poder injetar os dados da tela para dentro do objeto */
@@ -22,6 +26,11 @@ public class UsuarioPessoaManagedBean {
 
 	public void setUsuarioPessoa(UsuarioPessoa usuarioPessoa) {
 		this.usuarioPessoa = usuarioPessoa;
+	}
+	
+	public List<UsuarioPessoa> getList() {
+		list = daoGeneric.listarTodos(UsuarioPessoa.class);
+		return list;
 	}
 	
 	/* Action que serão chamadas na tela */
@@ -34,5 +43,7 @@ public class UsuarioPessoaManagedBean {
 		usuarioPessoa = new UsuarioPessoa();
 		return "";
 	}
+	
+	
 
 }
