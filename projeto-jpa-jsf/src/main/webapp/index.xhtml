@@ -75,6 +75,13 @@
 					<f:facet name="header">Login</f:facet>
 					<h:outputText value="#{user.login}"/>
 				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:commandLink value="Editar">
+						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+					</h:commandLink>
+				</h:column>
 		</h:dataTable>
 			  
 	</h:form>
