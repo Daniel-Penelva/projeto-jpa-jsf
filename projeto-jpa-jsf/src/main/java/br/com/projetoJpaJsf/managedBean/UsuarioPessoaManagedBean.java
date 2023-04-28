@@ -13,7 +13,7 @@ import br.com.projetoJpaJsf.model.UsuarioPessoa;
 @ViewScoped
 public class UsuarioPessoaManagedBean {
 
-	/* Criando e instanciando objeto */
+	/* Criando e instanciando objeto para poder injetar os dados da tela para dentro do objeto */
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
 	private DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<>();
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
@@ -40,6 +40,12 @@ public class UsuarioPessoaManagedBean {
 	}
 	
 	public String novo() {
+		usuarioPessoa = new UsuarioPessoa();
+		return "";
+	}
+	
+	public String remover() {
+		daoGeneric.deletarPorId(usuarioPessoa);
 		usuarioPessoa = new UsuarioPessoa();
 		return "";
 	}
