@@ -296,5 +296,10 @@ carregada no managed bean. Lembrando que vamos criar um objeto do Classe List do
 método getters para injetar os dados da tela para dentro do objeto. Vamos capturar o objeto e jogar na tela através
 do seu atributo 'list' do método getList.
 
+----------------------------------------------------------------//----------------------------------------------------------------
+
+Vamos trabalhar com Facets para isso vamos adicionar xmlns:f="http://java.sun.com/jsf/core para usar recursos
+mais avançados.
+
 
   
