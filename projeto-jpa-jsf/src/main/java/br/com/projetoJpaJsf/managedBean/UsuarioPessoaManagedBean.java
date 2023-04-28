@@ -23,5 +23,16 @@ public class UsuarioPessoaManagedBean {
 	public void setUsuarioPessoa(UsuarioPessoa usuarioPessoa) {
 		this.usuarioPessoa = usuarioPessoa;
 	}
+	
+	/* Action que serão chamadas na tela */
+	public String salvar() {
+		daoGeneric.salvar(usuarioPessoa);
+		return "";
+	}
+	
+	public String novo() {
+		usuarioPessoa = new UsuarioPessoa();
+		return "";
+	}
 
 }
