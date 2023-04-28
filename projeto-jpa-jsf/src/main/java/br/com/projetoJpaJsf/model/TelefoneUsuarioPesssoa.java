@@ -1,4 +1,4 @@
-package br.com.projetoJpaHibernate.model;
+package br.com.projetoJpaJsf.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

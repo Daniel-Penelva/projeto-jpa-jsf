@@ -6,8 +6,8 @@
 
 	<persistence-unit name="projeto-jpa-jsf">
 	
-	<class>br.com.projetoJpaHibernate.model.UsuarioPessoa</class>
-	<class>br.com.projetoJpaHibernate.model.TelefoneUsuarioPesssoa</class>
+	<class>br.com.projetoJpaJsf.model.UsuarioPessoa</class>
+	<class>br.com.projetoJpaJsf.model.TelefoneUsuarioPesssoa</class>
 		<properties>
 
 			<!-- Dados de conexão com o banco de dados -->

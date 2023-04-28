@@ -1,4 +1,4 @@
-package br.com.projetoJpaHibernate.util;
+package br.com.projetoJpaJsf.util;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,7 +19,7 @@ public class HibernateUtil {
 		try {
 			if (factory == null) {
 				/* Ele recebe como parâmetro o nome do projeto que está no arquivo persistence.xml */
-				factory = Persistence.createEntityManagerFactory("projeto-jpa-hibernate");
+				factory = Persistence.createEntityManagerFactory("projeto-jpa-jsf");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,11 +1,11 @@
-package br.com.projetoJpaHibernate.dao;
+package br.com.projetoJpaJsf.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import br.com.projetoJpaHibernate.util.HibernateUtil;
+import br.com.projetoJpaJsf.util.HibernateUtil;
 
 public class DaoGeneric<E> {
 

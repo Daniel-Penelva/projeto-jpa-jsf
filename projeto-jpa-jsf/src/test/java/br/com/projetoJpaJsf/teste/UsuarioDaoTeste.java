@@ -1,25 +1,25 @@
-package br.com.projetoJpaHibernate.teste;
+package br.com.projetoJpaJsf.teste;
 
 import java.util.List;
 
 import org.junit.Test;
 
-import br.com.projetoJpaHibernate.dao.DaoGeneric;
-import br.com.projetoJpaHibernate.model.TelefoneUsuarioPesssoa;
-import br.com.projetoJpaHibernate.model.UsuarioPessoa;
+import br.com.projetoJpaJsf.dao.DaoGeneric;
+import br.com.projetoJpaJsf.model.TelefoneUsuarioPesssoa;
+import br.com.projetoJpaJsf.model.UsuarioPessoa;
 
 public class UsuarioDaoTeste {
 
-	// @Test
+	@Test
 	public void usuarioDaoTestSalvar() {
 
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
 		UsuarioPessoa pessoa = new UsuarioPessoa();
-		pessoa.setNome("Daniel");
-		pessoa.setSobrenome("Caio");
-		pessoa.setEmail("caio@gmail.com");
-		pessoa.setLogin("daniel-caio");
+		pessoa.setNome("admin");
+		pessoa.setSobrenome("admin");
+		pessoa.setEmail("admin@gmail.com");
+		pessoa.setLogin("admin");
 		pessoa.setSenha("123");
 		pessoa.setIdade(32);
 
@@ -193,7 +193,7 @@ public class UsuarioDaoTeste {
 		daoGeneric.salvar(telefone);
 	}
 
-	@Test
+	//@Test
 	public void testConsultarTelefones() {
 		DaoGeneric daoGeneric = new DaoGeneric();
 

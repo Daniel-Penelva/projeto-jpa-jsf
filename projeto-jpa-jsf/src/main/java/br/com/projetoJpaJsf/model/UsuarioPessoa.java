@@ -1,4 +1,4 @@
-package br.com.projetoJpaHibernate.model;
+package br.com.projetoJpaJsf.model;
 
 import java.util.List;
 
@@ -13,9 +13,8 @@ import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({
-
-		@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
-		@NamedQuery(name = "UsuarioPessoa.buscarPorNomes", query = "select u from UsuarioPessoa u where u.nome = :nome") })
+	@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
+	@NamedQuery(name = "UsuarioPessoa.buscarPorNomes", query = "select u from UsuarioPessoa u where u.nome = :nome") })
 public class UsuarioPessoa {
 
 	@Id

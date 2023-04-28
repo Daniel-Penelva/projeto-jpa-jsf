@@ -1,8 +1,8 @@
-package br.com.projetoJpaHibernate.teste;
+package br.com.projetoJpaJsf.teste;
 
 import org.junit.Test;
 
-import br.com.projetoJpaHibernate.util.HibernateUtil;
+import br.com.projetoJpaJsf.util.HibernateUtil;
 
 public class TesteHibernate {
 	
