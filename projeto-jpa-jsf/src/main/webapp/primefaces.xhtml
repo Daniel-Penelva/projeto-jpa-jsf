@@ -22,25 +22,31 @@
 	    <h:messages showDetail="true" showSummary="false"/>
 		<p:panelGrid columns="2">
 		
-			<h:outputLabel>Id:</h:outputLabel>
+			<p:outputLabel>Id:</p:outputLabel>
 			<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 
-			<h:outputLabel>Nome:</h:outputLabel>
+			<p:outputLabel>Nome:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" />
 			
-			<h:outputLabel>Sobrenome:</h:outputLabel>
+			<p:outputLabel>Sobrenome:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}"/>
 			
-			<h:outputLabel>E-mail:</h:outputLabel>
+			<p:outputLabel>E-mail:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
 			
-			<h:outputLabel>Idade:</h:outputLabel>
+			<p:outputLabel>Idade:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" />
 			
-			<h:outputLabel>Login:</h:outputLabel>
+			<p:outputLabel>Sexo:</p:outputLabel>
+			<p:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
+				<f:selectItem itemValue="MASCULINO" itemLabel="Masculino"/>
+				<f:selectItem itemValue="FEMININO" itemLabel="Feminino"/>
+			</p:selectOneMenu>	
+			
+			<p:outputLabel>Login:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
 			
-			<h:outputLabel>Senha:</h:outputLabel>
+			<p:outputLabel>Senha:</p:outputLabel>
 			<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" />
 			
 		</p:panelGrid>
@@ -79,6 +85,11 @@
 				<p:column>
 					<f:facet name="header">Idade</f:facet>
 					<h:outputText value="#{user.idade}"/>
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">Sexo</f:facet>
+					<h:outputText value="#{user.sexo}"/>
 				</p:column>
 			
 				<p:column>

@@ -27,6 +27,7 @@ public class UsuarioPessoa {
 	private String login;
 	private String senha;
 	private int idade;
+	private String sexo;
 
 	/*
 	 * Anotação para relacionamento de um para muitos, ou seja, um usuário pode ter um ou vários telefones.
@@ -97,6 +98,14 @@ public class UsuarioPessoa {
 
 	public void setTelefones(List<TelefoneUsuarioPesssoa> telefones) {
 		this.telefones = telefones;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	@Override
