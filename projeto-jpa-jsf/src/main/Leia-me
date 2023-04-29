@@ -301,5 +301,14 @@ do seu atributo 'list' do método getList.
 Vamos trabalhar com Facets para isso vamos adicionar xmlns:f="http://java.sun.com/jsf/core para usar recursos
 mais avançados.
 
+----------------------------------------------------------------//----------------------------------------------------------------
 
+Mensagem ao usuário
+
+A mensagem vai ser criada através da Classe FacesContext,  nela vai ser chamado o método getCurrentInstance onde poderá adicionar um 
+método de message. Dentro desse método vai ser passado dois parâmetros, um deles vai ser a classe FacesMessage, onde em seu construtor 
+vai receber três valores que são: (1) Tipo de informação (2) título (3) menssagem.  
+
+Para gerar esse valor na tela vamos utilizar a tag <h:messages> e vamos utilizar dois atributos, (1) showDetail que recebe um valor true
+para mostrar a mensagem e (2) showSummary que recebe o valor false para não mostrar o título.
   

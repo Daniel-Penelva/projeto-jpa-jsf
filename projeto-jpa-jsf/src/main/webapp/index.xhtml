@@ -9,17 +9,18 @@
 </h:head>
 <h:body>
 
-	<h:form id="formPessoa">
+	<h:form>
+	    <h:messages showDetail="true" showSummary="false"/>
 		<h:panelGrid columns="2">
 		
 			<h:outputLabel>Id:</h:outputLabel>
-			<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}" />
+			<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 
 			<h:outputLabel>Nome:</h:outputLabel>
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" />
 			
 			<h:outputLabel>Sobrenome:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" />
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}"/>
 			
 			<h:outputLabel>E-mail:</h:outputLabel>
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
@@ -28,7 +29,7 @@
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" />
 			
 			<h:outputLabel>Login:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" />
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
 			
 			<h:outputLabel>Senha:</h:outputLabel>
 			<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" />
@@ -85,7 +86,7 @@
 				
 				<h:column>
 					<f:facet name="header">Remover</f:facet>
-					<h:commandLink value="Remover" action="#{usuarioPessoaManagedBean.remover}"> 
+					<h:commandLink immediate="true" value="Remover" action="#{usuarioPessoaManagedBean.remover}"> 
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 					</h:commandLink>
 				</h:column>
