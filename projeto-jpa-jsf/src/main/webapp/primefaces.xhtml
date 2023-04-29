@@ -11,6 +11,14 @@
 <h:body>
 
 	<h:form>
+		<p:breadCrumb>
+		    <p:menuitem/>
+			<p:menuitem value="Página JSF" action="index.jsf"/>
+			<p:menuitem value="Página Primefaces" action="primefaces.jsf"/>
+		</p:breadCrumb>
+	</h:form>
+
+	<h:form>
 	    <h:messages showDetail="true" showSummary="false"/>
 		<p:panelGrid columns="2">
 		
@@ -48,49 +56,49 @@
 		
 		<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="10" border="1">
 			<f:facet name="header">Lista de Usuários</f:facet>
-				<h:column>
+				<p:column>
 					<f:facet name="header">Id</f:facet>
 					<h:outputText value="#{user.id}"/>
-				</h:column>
+				</p:column>
 			
-				<h:column>
+				<p:column>
 					<f:facet name="header">Nome</f:facet>
 					<h:outputText value="#{user.nome}"/>
-				</h:column>
+				</p:column>
 			
-				<h:column>
+				<p:column>
 					<f:facet name="header">Sobrenome</f:facet>
 					<h:outputText value="#{user.sobrenome}"/>
-				</h:column>
+				</p:column>
 			
-				<h:column>
+				<p:column>
 					<f:facet name="header">E-mail</f:facet>
 					<h:outputText value="#{user.email}"/>
-				</h:column>
+				</p:column>
 			
-				<h:column>
+				<p:column>
 					<f:facet name="header">Idade</f:facet>
 					<h:outputText value="#{user.idade}"/>
-				</h:column>
+				</p:column>
 			
-				<h:column>
+				<p:column>
 					<f:facet name="header">Login</f:facet>
 					<h:outputText value="#{user.login}"/>
-				</h:column>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandLink value="Editar">
+					<p:commandLink value="Editar">
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
-					</h:commandLink>
-				</h:column>
+					</p:commandLink>
+				</p:column>
 				
-				<h:column>
+				<p:column>
 					<f:facet name="header">Remover</f:facet>
-					<h:commandLink immediate="true" value="Remover" action="#{usuarioPessoaManagedBean.remover}"> 
+					<p:commandLink immediate="true" value="Remover" action="#{usuarioPessoaManagedBean.remover}"> 
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
-					</h:commandLink>
-				</h:column>
+					</p:commandLink>
+				</p:column>
 		</p:dataTable>
 			  
 	</h:form>
