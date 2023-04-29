@@ -311,4 +311,20 @@ vai receber três valores que são: (1) Tipo de informação (2) título (3) men
 
 Para gerar esse valor na tela vamos utilizar a tag <h:messages> e vamos utilizar dois atributos, (1) showDetail que recebe um valor true
 para mostrar a mensagem e (2) showSummary que recebe o valor false para não mostrar o título.
+
+----------------------------------------------------------------//----------------------------------------------------------------
+
+Instalando o PrimeFaces
+
+Site: https://www.primefaces.org/showcase/index.xhtml?jfwid=19bbe
+
+Como startizar (getStarted)
+Link: https://www.primefaces.org/showcase/getstarted.xhtml?jfwid=19bbe
+
+Vamos adicionar as dependências do primeFaces, porém vale ressaltar que irei usar a versão 6.2. Também irei usar as 
+dependências do apache.commons
+
+Por fim iremos inserir o namespace para poder adicionar os componentes do PrimeFaces
+<html xmlns:p="http://primefaces.org/ui">
+
   
