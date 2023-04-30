@@ -26,10 +26,10 @@
 			<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 
 			<h:outputLabel>Nome:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" />
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!"/>
 			
 			<h:outputLabel>Sobrenome:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}"/>
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!"/>
 			
 			<h:outputLabel>E-mail:</h:outputLabel>
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
@@ -44,18 +44,23 @@
 			</h:selectOneMenu>
 			
 			<h:outputLabel>Login:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}"/>
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" required="true" requiredMessage="Informe o login!"/>
 			
 			<h:outputLabel>Senha:</h:outputLabel>
-			<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" />
+			<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" required="true" requiredMessage="informe a senha!"/>
 			
 		</h:panelGrid>
 		
 		<br />
 		<br />
 		
-		<h:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
-		<h:commandButton value="Novo" action="#{usuarioPessoaManagedBean.novo}"/>
+		<h:panelGroup>
+			<h:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
+			
+			<h:commandButton id="botaoNovo" value="Novo" action="#{usuarioPessoaManagedBean.novo}"> 
+				<f:ajax execute="botaoNovo" render="@form"/>
+			</h:commandButton>
+		</h:panelGroup>
 		
 		<br />
 		<br />
@@ -99,14 +104,17 @@
 				
 				<h:column>
 					<f:facet name="header">Editar</f:facet>
-					<h:commandLink value="Editar">
+					<h:commandLink immediate="true" id="botaoeditar">
+						<h:graphicImage url="resources/img/edit.png"/>
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
+						<f:ajax execute="botaoeditar" render="@form"/>
 					</h:commandLink>
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Remover</f:facet>
-					<h:commandLink immediate="true" value="Remover" action="#{usuarioPessoaManagedBean.remover}"> 
+					<h:commandLink immediate="true" action="#{usuarioPessoaManagedBean.remover}">
+						<h:graphicImage url="resources/img/delete.png"/> 
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 					</h:commandLink>
 				</h:column>
