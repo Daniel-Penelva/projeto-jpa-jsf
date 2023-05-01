@@ -62,28 +62,24 @@ public class DaoGeneric<E> {
 		return entidadeSalva;
 	}
 
-	public void deletarPorId(E entidade) {
-		try {
-
+	public void deletarPorId(E entidade) throws Exception{
+		
+		    // Obtem o ID do objeto PK
+			Object id = HibernateUtil.getPrimaryKey(entidade);
+			
 			/* Captura uma transação para a criação do entityManager */
 			EntityTransaction transaction = entityManager.getTransaction();
 
-			/* Abrir a transação */
+			/* Começa uma Transação no banco de dados */
 			transaction.begin();
 
-			Object id = HibernateUtil.getPrimaryKey(entidade);
-
 			if (id != null) {
-
 				/* Para deletar usa-se o método executeUpdate() */
 				entityManager.createQuery("delete from " + entidade.getClass().getName() + " where id = " + id)
 						.executeUpdate();
 
 				transaction.commit();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public List<E> listarTodos(Class<E> entidade) {

@@ -328,4 +328,8 @@ dependências do apache.commons
 Por fim iremos inserir o namespace para poder adicionar os componentes do PrimeFaces
 <html xmlns:p="http://primefaces.org/ui">
 
+----------------------------------------------------------------//----------------------------------------------------------------
+
+O atributo render o valor "@form" representa o valor pai da hierarquia de uma árvore, o @form é porque estamos recarregando
+o formulario pai do componente. 
   

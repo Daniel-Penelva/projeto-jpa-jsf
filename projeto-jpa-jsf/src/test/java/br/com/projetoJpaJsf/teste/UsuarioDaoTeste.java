@@ -72,7 +72,7 @@ public class UsuarioDaoTeste {
 	}
 
 	// @Test
-	public void usuarioDaoTestDeletar() {
+	public void usuarioDaoTestDeletar() throws Exception {
 		// Cria o entityManager
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 
