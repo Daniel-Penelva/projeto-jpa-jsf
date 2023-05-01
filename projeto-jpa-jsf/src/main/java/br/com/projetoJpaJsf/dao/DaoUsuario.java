@@ -19,3 +19,5 @@ public class DaoUsuario<E> extends DaoGeneric<UsuarioPessoa>{
 	}
 
 }
+
+/* Dao para excluir em cascata os valores da relação de entidade entre UsuarioPessoa e TelefoneUsuarioPessoa. */

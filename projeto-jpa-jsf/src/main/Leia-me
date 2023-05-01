@@ -332,4 +332,13 @@ Por fim iremos inserir o namespace para poder adicionar os componentes do PrimeF
 
 O atributo render o valor "@form" representa o valor pai da hierarquia de uma árvore, o @form é porque estamos recarregando
 o formulario pai do componente. 
+
+----------------------------------------------------------------//----------------------------------------------------------------
+
+Vamos criar uma tela para cadastrar os telefone(s) de usuário. Para isso vamos criar um botão 'telefone' na página index.jsf
+que vai redirecionar (action) para a página de cadastro de telefone. Para amarrar ambas as páginas vamos utilizar um código de 
+usuário que vai ser passado por um parametro (tag <param> ) para que o managed bean o pegue e consiga fazer essa relação. Ou seja, vale 
+ressaltar que vamos associar o telefone do usuario através da chave estrangeira cujo o valor estará ligado com a chave primaria do 
+UsuarioPessoa, é assim que iremos associar ambas as entidades. 
+
   

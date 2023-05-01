@@ -75,7 +75,6 @@ public class UsuarioPessoaManagedBean {
 
 		try {
 			daoGeneric.removerUsuario(usuarioPessoa);
-			;
 
 			// exclui o usuário da lista
 			list.remove(usuarioPessoa);
