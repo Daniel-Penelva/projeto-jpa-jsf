@@ -64,6 +64,8 @@ public class UsuarioPessoaManagedBean {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação:", "Cadastrado com Sucesso!"));
 		return "";
+		
+	 /* Lembrando, vamos colocar para retornar um tipo String para que retorne na mesma página. */
 	}
 
 	public String novo() {
