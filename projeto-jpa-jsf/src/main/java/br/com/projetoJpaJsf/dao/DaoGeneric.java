@@ -39,8 +39,11 @@ public class DaoGeneric<E> {
 	}
 
 	public E pesquisar(Long id, Class<E> entidade) {
-
-		E pesquisa = (E) entityManager.find(entidade, id);
+		
+		// Para limpar o que está na memória pq estava dando erro por causa de cache.
+		entityManager.clear();
+		
+		E pesquisa = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id).getSingleResult();
 		return pesquisa;
 	}
 

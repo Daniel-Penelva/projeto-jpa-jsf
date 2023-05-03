@@ -40,12 +40,31 @@ public class TelefoneManagedBean {
 		daoTelefone.salvar(telefone);
 		telefone = new TelefoneUsuarioPesssoa();
 		
+		// Busca do BD os telefones cadastrados que serão carregados na tabela quando salva um novo telefone.
+		usuarioPessoa = daoUsuario.pesquisar(usuarioPessoa.getId(), UsuarioPessoa.class);
+		
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação:", "Cadastrado com Sucesso!"));
 		
 		return "";
 		
 		/* Lembrando, vamos colocar para retornar um tipo String para que retorne na mesma página. */
+	}
+	
+	public String removeTelefone() throws Exception {
+		
+		daoTelefone.deletarPorId(telefone);
+		
+		// Busca do BD os telefones cadastrados, ou seja, carrega o usuario e seus telefones
+		usuarioPessoa = daoUsuario.pesquisar(usuarioPessoa.getId(), UsuarioPessoa.class);
+		
+		//Tem que instanciar um novo telefone depois que remove o telefone
+		telefone = new TelefoneUsuarioPesssoa();
+		
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação:", "Telefone removido com Sucesso!"));
+		
+		return "";
 	}
 
 	
@@ -74,9 +93,4 @@ public class TelefoneManagedBean {
 	public void setTelefone(TelefoneUsuarioPesssoa telefone) {
 		this.telefone = telefone;
 	}
-	
-	
-	
-	
-
 }
