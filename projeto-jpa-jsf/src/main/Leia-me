@@ -341,4 +341,8 @@ usuário que vai ser passado por um parametro (tag <param> ) para que o managed 
 ressaltar que vamos associar o telefone do usuario através da chave estrangeira cujo o valor estará ligado com a chave primaria do 
 UsuarioPessoa, é assim que iremos associar ambas as entidades. 
 
+----------------------------------------------------------------//----------------------------------------------------------------
+Instrução para fazer o CEP:
+https://viacep.com.br/
+
   
