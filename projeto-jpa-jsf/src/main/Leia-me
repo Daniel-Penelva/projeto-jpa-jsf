@@ -369,4 +369,6 @@ Observações: No index.xhtml
    -> E para enviar esse cep é utilizado um 'listener' que define um método que consulta o nosso web service.
    
    -> Vamos utilizar a biblioteca gson (maven) e instalar no pom.xml
+   
+   -> E por fim o 'render' para recarregar os componentes com os dados (os objetos) que vem do web service 
   
