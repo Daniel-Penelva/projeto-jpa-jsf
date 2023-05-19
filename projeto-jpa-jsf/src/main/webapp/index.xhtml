@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 	<title>Olá JSF</title>
@@ -26,13 +27,13 @@
 			<h:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
        
 			<h:outputLabel>Nome:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!"/>
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Informe o nome!" pt:placeholder="Digite o nome"/>
 		
 			<h:outputLabel>Sobrenome:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!"/>
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Informe o sobrenome!" pt:placeholder="Digite o sobrenome"/>
 		
 			<h:outputLabel>E-mail:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" pt:placeholder="Digite o email"/>
 		
 			<h:outputLabel>Idade:</h:outputLabel>
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" />
@@ -44,7 +45,7 @@
 			</h:selectOneMenu>
 		
 			<h:outputLabel>CEP</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser">
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser" pt:placeholder="Digite o CEP">
 				<f:ajax event="blur" execute="@this" render="logradouro complemento bairro localidade uf unidade ibge gia" listener="#{usuarioPessoaManagedBean.pesquisaCep}" />
 			</h:inputText>
 			
@@ -73,10 +74,10 @@
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.gia}" id="gia"/>
 		
 			<h:outputLabel>Login:</h:outputLabel>
-			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" required="true" requiredMessage="Informe o login!"/>
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" required="true" requiredMessage="Informe o login!" pt:placeholder="Digite o login"/>
 		
 			<h:outputLabel>Senha:</h:outputLabel>
-			<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" required="true" requiredMessage="informe a senha!"/>
+			<h:inputSecret value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" required="true" requiredMessage="informe a senha!" pt:placeholder="Digite a senha"/>
 		
 		</h:panelGrid>
 		
