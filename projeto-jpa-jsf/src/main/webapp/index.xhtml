@@ -43,6 +43,11 @@
 				<f:selectItem itemValue="FEMININO"/>
 			</h:selectOneMenu>
 			
+			<h:outputLabel>CEP</h:outputLabel>
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser">
+				<f:ajax event="blur" execute="@this" listener="#{usuarioPessoaManagedBean.pesquisaCep}" />
+			</h:inputText>
+			
 			<h:outputLabel>Login:</h:outputLabel>
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" required="true" requiredMessage="Informe o login!"/>
 			

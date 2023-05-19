@@ -345,4 +345,28 @@ UsuarioPessoa, é assim que iremos associar ambas as entidades.
 Instrução para fazer o CEP:
 https://viacep.com.br/
 
+Vamos utilizar esse link para capturar o cep digitado pelo usuário:
+https://viacep.com.br/ws/01001000/json/
+
+Observações: No index.xhtml
+  -> Tem que mandar para o lado do servidor apenas o CEP.
+
+  -> Para perda de foco no JSF usa-se o evento (event) blur.
+
+  -> E vai ser executado (execute) em via desse inputText CEP. Ou seja, o id do inputText que vai ser executado, 
+  no caso, pode usar o '@this' ou o valor dado pelo id que define o mesmo contexto.
+  
+		  <h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser">
+			 <f:ajax event="blur" execute="@this" />
+		  </h:inputText>
+		  
+		  Ou 
+		
+		  <h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser">
+			 <f:ajax event="blur" execute="cepuser" />
+		  </h:inputText>
+  
+   -> E para enviar esse cep é utilizado um 'listener' que define um método que consulta o nosso web service.
+   
+   -> Vamos utilizar a biblioteca gson (maven) e instalar no pom.xml
   

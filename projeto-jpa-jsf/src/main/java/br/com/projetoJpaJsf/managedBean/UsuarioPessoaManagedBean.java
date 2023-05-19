@@ -1,5 +1,10 @@
 package br.com.projetoJpaJsf.managedBean;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +13,11 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.hibernate.exception.ConstraintViolationException;
+
+import com.google.gson.Gson;
 
 import br.com.projetoJpaJsf.dao.DaoUsuario;
 import br.com.projetoJpaJsf.model.UsuarioPessoa;
@@ -96,6 +104,59 @@ public class UsuarioPessoaManagedBean {
 		}
 
 		return "";
+	}
+	
+	public void pesquisaCep(AjaxBehaviorEvent event) {
+		
+		try {
+			//System.out.println("Cep digitado: " + usuarioPessoa.getCep());
+			
+			// Capturar a url do cep digitado pelo usuário
+			URL url = new URL("https://viacep.com.br/ws/"+usuarioPessoa.getCep()+"/json/");
+			
+			// Abrir uma conexão dessa url
+			URLConnection connection = url.openConnection();
+			
+			// O InputStream é onde os fluxos de dados irão retornar 
+			InputStream is = connection.getInputStream();
+			
+			// BufferedReader é utilizado para lê o fluxo de dados
+			BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+			
+			//Teremos que varrer esse BufferedReader para poder ser lido e colocado numa variável de texto
+			String cep = "";
+			
+			// StringBuilder vai guardar todas as informações do CEP (cep, logradouro, complemento, ...)
+			StringBuilder jsonCep = new StringBuilder();
+			
+			//Enquanto houver dados a ser lido na linha (readLine) cai nessa repetição
+			while((cep = br.readLine()) != null) {
+				
+				jsonCep.append(cep);  // vai adicionando todos os valores referente ao cep
+			}
+			
+			//System.out.println(jsonCep.toString());
+			
+			// Vamos inicializar um usuário para carregar as informações do cep para dentro do nosso objeto
+			UsuarioPessoa userCepPessoa = new Gson().fromJson(jsonCep.toString(), UsuarioPessoa.class);
+			
+			//System.out.println(userCepPessoa);
+			
+			/* Atribuindo os valores controlado pelo managedbean (usuarioPessoa) que vai capturar os valores na 
+			 * variavel (objeto) auxiliar.*/
+			usuarioPessoa.setCep(userCepPessoa.getCep());
+			usuarioPessoa.setLogradouro(userCepPessoa.getLogradouro());
+			usuarioPessoa.setComplemento(userCepPessoa.getComplemento());
+			usuarioPessoa.setBairro(userCepPessoa.getBairro());
+			usuarioPessoa.setLocalidade(userCepPessoa.getLocalidade());
+			usuarioPessoa.setUf(userCepPessoa.getUf());
+			usuarioPessoa.setUnidade(userCepPessoa.getUnidade());
+			usuarioPessoa.setIbge(userCepPessoa.getIbge());
+			usuarioPessoa.setGia(userCepPessoa.getGia());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
