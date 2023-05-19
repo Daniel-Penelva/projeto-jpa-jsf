@@ -371,4 +371,30 @@ Observações: No index.xhtml
    -> Vamos utilizar a biblioteca gson (maven) e instalar no pom.xml
    
    -> E por fim o 'render' para recarregar os componentes com os dados (os objetos) que vem do web service 
-  
+   
+ Explicando o método pesquisaCep():
+ 
+ A linha URL url = new URL("https://viacep.com.br/ws/"+usuarioPessoa.getCep()+"/json/"); cria um objeto URL com base 
+ em uma string que representa a URL para a pesquisa do CEP. O valor do CEP é obtido da propriedade cep do objeto usuarioPessoa.
+ 
+ A linha URLConnection connection = url.openConnection(); abre uma conexão com a URL especificada na etapa anterior.
+ 
+ A linha InputStream is = connection.getInputStream(); obtém um fluxo de entrada a partir da conexão estabelecida, que permite 
+ ler os dados da resposta HTTP.
+ 
+ A linha BufferedReader br = new BufferedReader(new InputStreamReader(is, "UTF-8")); cria um leitor de buffer para ler os dados 
+ do fluxo de entrada. Ele também especifica que o conjunto de caracteres a ser usado para decodificar os bytes em caracteres é UTF-8.
+ 
+Lêem cada linha de texto da resposta HTTP e as adicionam ao objeto jsonCep do tipo StringBuilder. Isso é feito para 
+ obter uma representação completa dos dados JSON retornados pela API.
+ 
+ A linha UsuarioPessoa userCepPessoa = new Gson().fromJson(jsonCep.toString(), UsuarioPessoa.class); usa a biblioteca Gson para 
+ converter a string JSON contida no jsonCep para um objeto UsuarioPessoa. Isso pressupõe que a classe UsuarioPessoa tenha uma estrutura correspondente à estrutura do JSON retornado.
+
+ As linhas seguintes atribuem os valores dos campos do objeto userCepPessoa ao objeto usuarioPessoa, que provavelmente é uma 
+ instância da classe UsuarioPessoa. Isso é feito para preencher os detalhes do endereço obtidos a partir do CEP.
+ 
+ No caso de ocorrerem exceções durante o processamento do código (por exemplo, se houver um erro na conexão HTTP), a exceção 
+ será capturada no bloco catch e impressa no console usando o método e.printStackTrace().
+ 
+ 

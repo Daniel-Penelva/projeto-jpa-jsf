@@ -20,46 +20,60 @@
 
 	<h:form>
 	    <h:messages showDetail="true" showSummary="false"/>
-		<p:panelGrid columns="2">
-		
-			<p:outputLabel>Id:</p:outputLabel>
-			<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
-
-			<p:outputLabel>Nome:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Infome o nome!"/>
+		<p:panelGrid columns="1">
+			<p:column>
+				<p:outputLabel>Id:</p:outputLabel>
+				<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
+			</p:column>
 			
-			<p:outputLabel>Sobrenome:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Infome o sobrenome!"/>
+			<p:column>
+				<p:outputLabel>Nome:</p:outputLabel>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Infome o nome!"/>
+			</p:column>
 			
-			<p:outputLabel>E-mail:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
+			<p:column>
+				<p:outputLabel>Sobrenome:</p:outputLabel>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Infome o sobrenome!"/>
+			</p:column>
 			
-			<p:outputLabel>Idade:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" />
+			<p:column>
+				<p:outputLabel>E-mail:</p:outputLabel>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
+			</p:column>
 			
-			<p:outputLabel>Sexo:</p:outputLabel>
-			<p:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
-				<f:selectItem itemValue="MASCULINO" itemLabel="Masculino"/>
-				<f:selectItem itemValue="FEMININO" itemLabel="Feminino"/>
-			</p:selectOneMenu>	
+			<p:column>
+				<p:outputLabel>Idade:</p:outputLabel>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" />
+			</p:column>
 			
-			<p:outputLabel>Login:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" required="true" requiredMessage="Informe o login"/>
+			<p:column>
+				<p:outputLabel>Sexo:</p:outputLabel>
+				<p:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
+					<f:selectItem itemValue="MASCULINO" itemLabel="Masculino"/>
+					<f:selectItem itemValue="FEMININO" itemLabel="Feminino"/>
+				</p:selectOneMenu>	
+			</p:column>
 			
-			<p:outputLabel>Senha:</p:outputLabel>
-			<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" required="true" requiredMessage="Informe a senha!"/>
+			<p:column>
+				<p:outputLabel>Login:</p:outputLabel>
+				<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" required="true" requiredMessage="Informe o login"/>
+			</p:column>
+			
+			<p:column>
+				<p:outputLabel>Senha:</p:outputLabel>
+				<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" required="true" requiredMessage="Informe a senha!"/>
+			</p:column>
 			
 		</p:panelGrid>
 		
 		<br />
 		<br />
 		
-		
-		<p:commandButton value="Salvar" action="#{usuarioPessoaManagedBean.salvar}"/>
-		<p:commandButton id="botaoNovo" value="Novo" action="#{usuarioPessoaManagedBean.novo}">
-			<f:ajax execute="botaoNovo" render="@form"/>
+		<p:commandButton value="Salvar" ajax="false" action="#{usuarioPessoaManagedBean.salvar}"/>
+		<p:commandButton value="Novo" immediate="true" action="#{usuarioPessoaManagedBean.novo}">
+		  <f:ajax execute="@this" render="@form"/>
 		</p:commandButton>
-		
+			
 		<br />
 		<br />
 		
