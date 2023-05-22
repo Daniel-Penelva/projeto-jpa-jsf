@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Olá JSF</title>
+</h:head>
+<h:body>
+
+	<h1>Telefones</h1>
+
+	<h:form>
+		<p:breadCrumb>
+			<p:menuitem />
+			<p:menuitem value="Página JSF" action="index.jsf" />
+			<p:menuitem value="Página Primefaces" action="primefaces.jsf" />
+		</p:breadCrumb>
+	</h:form>
+
+	<h:form id="formulario">
+		<p:messages autoUpdate="true" showDetail="true" showSummary="false" id="msg" />
+
+		<p:panelGrid columns="2">
+
+			<p:outputLabel>Usuário:</p:outputLabel>
+			<p:outputLabel value="#{telefoneManagedBean.usuarioPessoa.nome}" />
+
+			<p:outputLabel>Número:</p:outputLabel>
+			<p:inputText value="#{telefoneManagedBean.telefone.numero}" required="true" requiredMessage="Informe número de telefone"/>
+
+			<p:outputLabel>Tipo:</p:outputLabel>
+			<p:inputText value="#{telefoneManagedBean.telefone.tipo}" required="true" requiredMessage="Informe o tipo de telefone"/>
+
+		</p:panelGrid>
+
+		<br />
+		<br />
+
+		<h:panelGroup>
+			<p:commandButton ajax="false" value="Salvar" action="#{telefoneManagedBean.salvar}" />
+		</h:panelGroup>
+
+	</h:form>
+
+	<h:form id="formTelefones">
+		<p:dataTable id="tabelaFone" value="#{telefoneManagedBean.usuarioPessoa.telefones}" var="fone" border="2" cellpadding="15">
+			<f:facet name="header">Lista de Telefones</f:facet>
+
+			<p:column headerText="Id">
+				<h:outputText value="#{fone.id}" />
+			</p:column>
+
+			<p:column headerText="Número">
+				<h:outputText value="#{fone.numero}" />
+			</p:column>
+
+			<p:column headerText="Tipo">
+				<h:outputText value="#{fone.tipo}" />
+			</p:column>
+
+			<p:column headerText="Remover">
+				<p:commandLink immediate="true" ajax="false" action="#{telefoneManagedBean.removeTelefone}" >
+					<h:graphicImage url="resources/img/delete.png" />
+					<f:setPropertyActionListener value="#{fone}" target="#{telefoneManagedBean.telefone}" />
+				</p:commandLink>
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+
+</h:body>
+
+</html>

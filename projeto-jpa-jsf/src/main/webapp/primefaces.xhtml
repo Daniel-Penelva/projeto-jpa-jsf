@@ -103,19 +103,24 @@
 					<h:outputText value="#{user.login}"/>
 				</p:column>
 				
-				<p:column>
-					<f:facet name="header">Editar</f:facet>
+				<p:column headerText="Editar">
 					<p:commandLink ajax="false">
 						<h:graphicImage url="resources/img/edit.png"/>
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 					</p:commandLink>
 				</p:column>
 				
-				<p:column>
-					<f:facet name="header">Remover</f:facet>
+				<p:column headerText="Remover">
 					<p:commandLink  ajax="false" action="#{usuarioPessoaManagedBean.remover}"> 
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
 						<h:graphicImage url="resources/img/delete.png"/>
+					</p:commandLink>
+				</p:column>
+				
+				<p:column headerText="Telefones">
+					<p:commandLink immediate="true" action="telefoneprimefaces.jsf" id="botaofone">
+						<h:graphicImage url="resources/img/telefone.png"/> 
+						<f:param name="codigouser" value="#{user.id}"/>
 					</p:commandLink>
 				</p:column>
 		</p:dataTable>		  
