@@ -56,7 +56,7 @@
 		<br />
 		
 		<p:commandButton value="Salvar" ajax="false" action="#{usuarioPessoaManagedBean.salvar}"/>
-		<p:commandButton value="Novo" immediate="true" action="#{usuarioPessoaManagedBean.novo}">
+		<p:commandButton value="Novo" immediate="true" action="#{usuarioPessoaManagedBean.novo}" style="margin-left:10px;">
 		  <f:ajax execute="@this" render="@form"/>
 		</p:commandButton>
 		
@@ -105,18 +105,16 @@
 				
 				<p:column>
 					<f:facet name="header">Editar</f:facet>
-					<p:commandLink immediate="true" id="botaoeditar">
+					<p:commandLink ajax="false">
 						<h:graphicImage url="resources/img/edit.png"/>
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
-						<f:ajax execute="botaoeditar" render="@form"/>
 					</p:commandLink>
 				</p:column>
 				
 				<p:column>
 					<f:facet name="header">Remover</f:facet>
-					<p:commandLink immediate="true" id="botaoremove" action="#{usuarioPessoaManagedBean.remover}"> 
+					<p:commandLink  ajax="false" action="#{usuarioPessoaManagedBean.remover}"> 
 						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}" />
-						<f:ajax execute="botaoremove" render="@form"/>
 						<h:graphicImage url="resources/img/delete.png"/>
 					</p:commandLink>
 				</p:column>
