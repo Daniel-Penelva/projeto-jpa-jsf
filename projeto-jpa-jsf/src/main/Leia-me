@@ -404,4 +404,8 @@ Lêem cada linha de texto da resposta HTTP e as adicionam ao objeto jsonCep do t
  documentação primefaces
  Link: https://www.primefaces.org/documentation/
  
+ ----------------------------------------------------------
+ Vamos criar um caixa de dialog para criar muitos email. No caso, vamos apagar as propriedades de e-mail e os 
+ campos de e-mail no layout. Vale ressaltar para não esquecer de deletar a coluna  e-mail do banco de dados.
+ 
  

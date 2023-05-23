@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Olá JSF</title>
@@ -36,11 +35,6 @@
 			<p:outputLabel>Sobrenome:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" id="idsobrenome" required="true" requiredMessage="Infome o sobrenome">
 				<p:watermark value="Informe o sobrenome" for="idsobrenome"/>
-			</p:inputText>
-			
-			<p:outputLabel>E-mail:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" id="idemail">
-				<p:watermark value="Informe o e-mail" for="idemail"/>
 			</p:inputText>
 			
 			<p:outputLabel>Idade:</p:outputLabel>
@@ -130,11 +124,6 @@
 				<p:column>
 					<f:facet name="header">Sobrenome</f:facet>
 					<h:outputText value="#{user.sobrenome}"/>
-				</p:column>
-			
-				<p:column>
-					<f:facet name="header">E-mail</f:facet>
-					<h:outputText value="#{user.email}"/>
 				</p:column>
 			
 				<p:column>

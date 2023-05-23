@@ -1,5 +1,6 @@
 package br.com.projetoJpaJsf.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +25,6 @@ public class UsuarioPessoa {
 
 	private String nome;
 	private String sobrenome;
-	private String email;
 	private String login;
 	private String senha;
 	private int idade;
@@ -32,10 +32,19 @@ public class UsuarioPessoa {
 
 	/*
 	 * Anotação para relacionamento de um para muitos, ou seja, um usuário pode ter um ou vários telefones.
-	 * Esse mapeamento seria a chave estrangeira (foreign key)
+	 * Esse mapeamento seria a chave estrangeira (foreign key).
+	 * 
+	 * Bom saber: O hibernate não aceita dois carregamentos automaticos (EAGER), logo para o mapeamento do
+	 * email vamos deixar LAZY, pois nessa caso ele só será invocado quando chamar o getEmail, diferente do 
+	 * EAGER que sempre estará carregando o telefone.
+	 * 
+	 * Dica: Sempre inicie a lista para evitar nullPointerException
 	 */
 	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)
-	private List<TelefoneUsuarioPesssoa> telefones;
+	private List<TelefoneUsuarioPesssoa> telefones = new ArrayList<TelefoneUsuarioPesssoa>();
+	
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.LAZY)
+	private List<EmailUsuarioPesssoa> emails = new ArrayList<EmailUsuarioPesssoa>();
 	
 	/* Campos de CEP */
 	private String cep;
@@ -75,14 +84,6 @@ public class UsuarioPessoa {
 		this.sobrenome = sobrenome;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	public String getLogin() {
 		return login;
 	}
@@ -113,6 +114,14 @@ public class UsuarioPessoa {
 
 	public void setTelefones(List<TelefoneUsuarioPesssoa> telefones) {
 		this.telefones = telefones;
+	}
+	
+	public void setEmails(List<EmailUsuarioPesssoa> emails) {
+		this.emails = emails;
+	}
+	
+	public List<EmailUsuarioPesssoa> getEmails() {
+		return emails;
 	}
 
 	public String getSexo() {
@@ -205,8 +214,7 @@ public class UsuarioPessoa {
 
 	@Override
 	public String toString() {
-		return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email
-				+ ", login=" + login + ", senha=" + senha + ", idade=" + idade + "]";
+		return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", login=" + login + ", senha=" + senha + ", idade=" + idade + "]";
 	}
 
 	@Override

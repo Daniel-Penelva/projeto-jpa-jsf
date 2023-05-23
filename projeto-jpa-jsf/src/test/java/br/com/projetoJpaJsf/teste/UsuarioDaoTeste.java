@@ -18,7 +18,6 @@ public class UsuarioDaoTeste {
 		UsuarioPessoa pessoa = new UsuarioPessoa();
 		pessoa.setNome("admin");
 		pessoa.setSobrenome("admin");
-		pessoa.setEmail("admin@gmail.com");
 		pessoa.setLogin("admin");
 		pessoa.setSenha("123");
 		pessoa.setIdade(32);
@@ -62,7 +61,6 @@ public class UsuarioDaoTeste {
 
 		// Seta novos valores
 		pessoa.setIdade(27);
-		pessoa.setEmail("psilva@gmail.com");
 
 		// Chama o método atualizar
 		pessoa = daoGeneric.atualizar(pessoa);

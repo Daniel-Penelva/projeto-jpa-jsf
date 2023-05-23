@@ -8,6 +8,7 @@
 	
 	<class>br.com.projetoJpaJsf.model.UsuarioPessoa</class>
 	<class>br.com.projetoJpaJsf.model.TelefoneUsuarioPesssoa</class>
+	<class>br.com.projetoJpaJsf.model.EmailUsuarioPesssoa</class>
 		<properties>
 
 			<!-- Dados de conexão com o banco de dados -->
