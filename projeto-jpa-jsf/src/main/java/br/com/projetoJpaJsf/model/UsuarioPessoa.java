@@ -48,6 +48,8 @@ public class UsuarioPessoa {
 	private String ibge;
 	private String gia;
 	
+	private Double salario;
+	
    /* Setters e Getters */
 	public Long getId() {
 		return id;
@@ -191,6 +193,14 @@ public class UsuarioPessoa {
 
 	public void setGia(String gia) {
 		this.gia = gia;
+	}
+
+	public Double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(Double salario) {
+		this.salario = salario;
 	}
 
 	@Override

@@ -43,6 +43,9 @@
 				<f:selectItem itemValue="MASCULINO"/>
 				<f:selectItem itemValue="FEMININO"/>
 			</h:selectOneMenu>
+			
+			<h:outputLabel>Salário:</h:outputLabel>
+			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.salario}" required="true" requiredMessage="Informe o salário"/>
 		
 			<h:outputLabel>CEP</h:outputLabel>
 			<h:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser" pt:placeholder="Digite o CEP">

@@ -16,6 +16,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import org.hibernate.exception.ConstraintViolationException;
+import org.primefaces.model.chart.BarChartModel;
+import org.primefaces.model.chart.ChartSeries;
 
 import com.google.gson.Gson;
 
@@ -34,6 +36,8 @@ public class UsuarioPessoaManagedBean {
 	private UsuarioPessoa usuarioPessoa = new UsuarioPessoa();
 	private List<UsuarioPessoa> list = new ArrayList<UsuarioPessoa>();
 	private DaoUsuario<UsuarioPessoa> daoGeneric = new DaoUsuario<UsuarioPessoa>();
+	
+	private BarChartModel barChartModel = new BarChartModel();
 
 	/*
 	 * Depois que esse managed bean é construido na memória será executado apenas
@@ -45,6 +49,23 @@ public class UsuarioPessoaManagedBean {
 	@PostConstruct
 	public void init() {
 		list = daoGeneric.listarTodos(UsuarioPessoa.class);
+		
+		//Para cada linha de usuário tem que iniciar um objeto ChartSeries - Grupo de usuários
+		ChartSeries userSalario = new ChartSeries();
+		
+		// Carregando o gráfico do salário de usuários - add salário para o grupo 
+		for (UsuarioPessoa usuarioPessoa : list) {
+			
+			// Recebe como parametro um objeto nome e um objeto número. Vale ressaltar q esse método é um Map, ou seja, 
+			//uma lista que recebe dois atributos, no caso, o nome e o salário - aqui faz um add salarios.
+			userSalario.set(usuarioPessoa.getNome(), usuarioPessoa.getSalario());
+		}
+		
+		// Adiciona o grupo no barChatModel
+		barChartModel.addSeries(userSalario);
+		
+		// Título
+		barChartModel.setTitle("Gráfico de Salário");
 	}
 
 	/*
@@ -61,6 +82,10 @@ public class UsuarioPessoaManagedBean {
 
 	public void setUsuarioPessoa(UsuarioPessoa usuarioPessoa) {
 		this.usuarioPessoa = usuarioPessoa;
+	}
+	
+	public BarChartModel getBarChartModel() {
+		return barChartModel;
 	}
 
 	/* Action que serão chamadas na tela */

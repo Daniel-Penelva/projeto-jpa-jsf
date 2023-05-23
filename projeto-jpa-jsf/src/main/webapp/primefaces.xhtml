@@ -28,10 +28,10 @@
 			<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 			
 			<p:outputLabel>Nome:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Infome o nome!"/>
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Infome o nome"/>
 			
 			<p:outputLabel>Sobrenome:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Infome o sobrenome!"/>
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Infome o sobrenome"/>
 			
 			<p:outputLabel>E-mail:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
@@ -45,11 +45,14 @@
 				<f:selectItem itemValue="FEMININO" itemLabel="Feminino"/>
 			</p:selectOneMenu>	
 			
+			<p:outputLabel>Salário:</p:outputLabel>
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.salario}" required="true" requiredMessage="Informe o salário"/>
+			
 			<p:outputLabel>Login:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" required="true" requiredMessage="Informe o login"/>
 			
 			<p:outputLabel>Senha:</p:outputLabel>
-			<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" required="true" requiredMessage="Informe a senha!"/>
+			<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" required="true" requiredMessage="Informe a senha"/>
 		</p:panelGrid>
 		
 		<br />
@@ -125,6 +128,11 @@
 				</p:column>
 		</p:dataTable>		  
 	</h:form>
+	
+	<br />
+	<br />
+	
+	<p:chart type="bar" model="#{usuarioPessoaManagedBean.barChartModel}"></p:chart>
 
 </h:body>
 

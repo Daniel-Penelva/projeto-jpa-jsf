@@ -397,4 +397,11 @@ Lêem cada linha de texto da resposta HTTP e as adicionam ao objeto jsonCep do t
  No caso de ocorrerem exceções durante o processamento do código (por exemplo, se houver um erro na conexão HTTP), a exceção 
  será capturada no bloco catch e impressa no console usando o método e.printStackTrace().
  
+ ------------------------------------------------------------
+ Criando um gráfico de salários
+ Link: http://www.primefaces.org:8080/showcase/ui/chart/bar.xhtml?jfwid=ae97f
+ 
+ documentação primefaces
+ Link: https://www.primefaces.org/documentation/
+ 
  
