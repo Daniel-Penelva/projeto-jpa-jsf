@@ -29,16 +29,24 @@
 			<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 			
 			<p:outputLabel>Nome:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" required="true" requiredMessage="Infome o nome"/>
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" id="idnome" required="true" requiredMessage="Infome o nome">
+				<p:watermark value="Informe o nome" for="idnome"/>
+			</p:inputText>
 			
 			<p:outputLabel>Sobrenome:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" required="true" requiredMessage="Infome o sobrenome"/>
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.sobrenome}" id="idsobrenome" required="true" requiredMessage="Infome o sobrenome">
+				<p:watermark value="Informe o sobrenome" for="idsobrenome"/>
+			</p:inputText>
 			
 			<p:outputLabel>E-mail:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" />
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.email}" id="idemail">
+				<p:watermark value="Informe o e-mail" for="idemail"/>
+			</p:inputText>
 			
 			<p:outputLabel>Idade:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" />
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.idade}" id="ididade">
+				<p:watermark value="Informe a idade" for="ididade"/>
+			</p:inputText>
 			
 			<p:outputLabel>Sexo:</p:outputLabel>
 			<p:selectOneMenu value="#{usuarioPessoaManagedBean.usuarioPessoa.sexo}">
@@ -47,11 +55,14 @@
 			</p:selectOneMenu>	
 			
 			<p:outputLabel>Salário:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.salario}" required="true" requiredMessage="Informe o salário"/>
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.salario}" id="idsalario" required="true" requiredMessage="Informe o salário">
+				<p:watermark value="Informe o salário" for="idsalario"/>
+			</p:inputText>
 			
 			<p:outputLabel>CEP</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser" pt:placeholder="Digite o CEP">
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.cep}" id="cepuser">
 				<f:ajax event="blur" execute="@this" render="logradouro complemento bairro localidade uf unidade ibge gia" listener="#{usuarioPessoaManagedBean.pesquisaCep}" />
+				<p:watermark value="Informe o CEP" for="cepuser"/>
 			</p:inputText>
 			
 			<p:outputLabel>Logradouro</p:outputLabel>
@@ -79,10 +90,15 @@
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.gia}" id="gia"/>
 			
 			<p:outputLabel>Login:</p:outputLabel>
-			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" required="true" requiredMessage="Informe o login"/>
+			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.login}" id="idlogin" required="true" requiredMessage="Informe o login">
+				<p:watermark value="Informe o login" for="idlogin"/>
+			</p:inputText>
 			
 			<p:outputLabel>Senha:</p:outputLabel>
-			<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" required="true" requiredMessage="Informe a senha"/>
+			<p:password value="#{usuarioPessoaManagedBean.usuarioPessoa.senha}" id="idsenha" required="true" requiredMessage="Informe a senha">
+				<p:watermark value="Informe a senha" for="idsenha"/>
+			</p:password>
+			
 		</p:panelGrid>
 		
 		<br />
