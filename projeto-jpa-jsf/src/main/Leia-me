@@ -408,4 +408,20 @@ Lêem cada linha de texto da resposta HTTP e as adicionam ao objeto jsonCep do t
  Vamos criar um caixa de dialog para criar muitos email. No caso, vamos apagar as propriedades de e-mail e os 
  campos de e-mail no layout. Vale ressaltar para não esquecer de deletar a coluna  e-mail do banco de dados.
  
+ Criando o botão para abrir o dialog.
+ O dialog fica dentro de um formulario. Vale ressaltar alguns atributos da tag 'dialog', temos a position que 
+ define a posição da caixa de dialog, temos o 'modal' que define uma posição fixa da caixa de dialog que trava
+ na tela para apenas trabalhar nele. Temos a vaiavel widgetVar que vai receber o mesmo valor do atributo id.
+ 
+ Esse atributo 'update=":formtable:dialogEmail"' que está na coluna de email está pedindo para que seja atualizado 
+ a tag <p:dialog>. Ou seja, significa que ele está saindo do formtable e indo para o dialogEmail. E vamos utilizar
+ um comando para abrir que é o atributo 'oncomplete', ao clicar no command o jsf vai processar todo a funcionalidade
+ para exibir na tela. Vejamos: oncomplete="PF('dialogEmail')". No caso, ele recebeo valor PF e entre parametro
+ recebe a variavel widgetVar. Por fim chamar a função .show() que é mostrar na tela.
+ 
+ Vamos abordar agora a funcionalidade: Ao clicar na imagem do botão email do usuário a caixa de dialog tem que 
+ser adicionado ao nosso objeto de usuário do nosso managedbean (UsuarioPessoaManagedBean), pois é ele que 
+controla a tela inteira. Ou seja quando for clicado no email tem que setar o usuário (id dele) que vai ser jogado
+para a variável 'usuarioPessoa' lá no 'UsuarioPessoaManagedBean'.
+ 
  

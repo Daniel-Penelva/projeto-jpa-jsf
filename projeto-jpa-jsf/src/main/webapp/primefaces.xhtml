@@ -161,7 +161,19 @@
 						<f:param name="codigouser" value="#{user.id}"/>
 					</p:commandLink>
 				</p:column>
-		</p:dataTable>		  
+				
+				<p:column headerText="E-mails">
+					<p:commandLink update=":formtable:dialogEmail" oncomplete="PF('dialogEmail').show()">
+						<h:graphicImage url="resources/img/email.png"/>
+						<f:setPropertyActionListener value="#{user}" target="#{usuarioPessoaManagedBean.usuarioPessoa}"/>
+					</p:commandLink>
+				</p:column>
+		</p:dataTable>
+		
+		<p:dialog header="E-mails" id="dialogEmail" widgetVar="dialogEmail" position="center" modal="true" width="490px">
+		
+		</p:dialog>
+				  
 	</h:form>
 	
 	<br />
