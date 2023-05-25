@@ -213,6 +213,10 @@ public class UsuarioPessoaManagedBean {
 	    
 	    // E para deixar o dialog já pronto para cadastrar um novo email, basta fazer um new.
 	    emailUser = new EmailUsuarioPesssoa();
+	    
+	    // Criando a mensagem de cadastrado e-mail com sucesso
+	    FacesContext.getCurrentInstance().addMessage(null, 
+	    		new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Email cadastrado com Sucesso!"));
 	}
 
 }

@@ -20,7 +20,7 @@
 
 	<h:form id="formulario">
 	
-	    <p:messages autoUpdate="true" showDetail="true" showSummary="false"/>
+	    <p:growl autoUpdate="true" showDetail="true"/>
 	    
 		<p:panelGrid columns="2">
 			
@@ -109,6 +109,7 @@
 		<br />
 		
 		<h:form id="formtable">
+		
 		<p:dataTable value="#{usuarioPessoaManagedBean.list}" var="user" cellpadding="10" border="1">
 			<f:facet name="header">Lista de Usuários</f:facet>
 				<p:column>
@@ -174,7 +175,7 @@
 			<p:panelGrid columns="3">
 				<p:outputLabel>E-mail:</p:outputLabel>
 				<p:inputText value="#{usuarioPessoaManagedBean.emailUser.email}"/>
-				<p:commandButton value="Adicionar" action="#{usuarioPessoaManagedBean.addEmail}"/>
+				<p:commandButton value="Adicionar" ajax="false" action="#{usuarioPessoaManagedBean.addEmail}"/>
 			</p:panelGrid>
 		</p:dialog>
 				  
