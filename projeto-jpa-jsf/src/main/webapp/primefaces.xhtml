@@ -170,8 +170,12 @@
 				</p:column>
 		</p:dataTable>
 		
-		<p:dialog header="E-mails" id="dialogEmail" widgetVar="dialogEmail" position="center" modal="true" width="490px">
-		
+		<p:dialog header="E-mails" id="dialogEmail" widgetVar="dialogEmail" position="center" modal="true" width="550px" resizable="false">
+			<p:panelGrid columns="3">
+				<p:outputLabel>E-mail:</p:outputLabel>
+				<p:inputText value="#{usuarioPessoaManagedBean.emailUser.email}"/>
+				<p:commandButton value="Adicionar" action="#{usuarioPessoaManagedBean.addEmail}"/>
+			</p:panelGrid>
 		</p:dialog>
 				  
 	</h:form>

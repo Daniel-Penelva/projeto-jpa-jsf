@@ -21,7 +21,9 @@ import org.primefaces.model.chart.ChartSeries;
 
 import com.google.gson.Gson;
 
+import br.com.projetoJpaJsf.dao.DaoEmail;
 import br.com.projetoJpaJsf.dao.DaoUsuario;
+import br.com.projetoJpaJsf.model.EmailUsuarioPesssoa;
 import br.com.projetoJpaJsf.model.UsuarioPessoa;
 
 @ManagedBean(name = "usuarioPessoaManagedBean")
@@ -38,6 +40,9 @@ public class UsuarioPessoaManagedBean {
 	private DaoUsuario<UsuarioPessoa> daoGeneric = new DaoUsuario<UsuarioPessoa>();
 	
 	private BarChartModel barChartModel = new BarChartModel();
+	
+	private EmailUsuarioPesssoa emailUser = new EmailUsuarioPesssoa(); 
+	private DaoEmail<EmailUsuarioPesssoa> daoEmail = new DaoEmail<EmailUsuarioPesssoa>();
 
 	/*
 	 * Depois que esse managed bean é construido na memória será executado apenas
@@ -86,6 +91,14 @@ public class UsuarioPessoaManagedBean {
 	
 	public BarChartModel getBarChartModel() {
 		return barChartModel;
+	}
+	
+	public void setEmailUser(EmailUsuarioPesssoa emailUser) {
+		this.emailUser = emailUser;
+	}
+	
+	public EmailUsuarioPesssoa getEmailUser() {
+		return emailUser;
 	}
 
 	/* Action que serão chamadas na tela */
@@ -184,6 +197,22 @@ public class UsuarioPessoaManagedBean {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void addEmail() {
+		//System.out.println("Teste: " + emailUser);
+		
+		// Tem que amarrar o email a pessoa, logo vamos setar o email ao usuario antes de gravar no banco.
+		emailUser.setUsuarioPessoa(usuarioPessoa);
+		
+		// Gravar no banco de dados o email e já deixa na memória 
+	    emailUser = daoEmail.atualizar(emailUser);
+	    
+	    // Adiciona na lista de email
+	    usuarioPessoa.getEmails().add(emailUser);
+	    
+	    // E para deixar o dialog já pronto para cadastrar um novo email, basta fazer um new.
+	    emailUser = new EmailUsuarioPesssoa();
 	}
 
 }
