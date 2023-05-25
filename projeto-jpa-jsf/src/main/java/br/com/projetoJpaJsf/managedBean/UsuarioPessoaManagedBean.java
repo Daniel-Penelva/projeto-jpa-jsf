@@ -218,5 +218,26 @@ public class UsuarioPessoaManagedBean {
 	    FacesContext.getCurrentInstance().addMessage(null, 
 	    		new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Email cadastrado com Sucesso!"));
 	}
+	
+	// Para remover o email temos que passar o id pelo lado do servidor por meio do parametro (param)
+	public void removerEmail() throws Exception {
+		//Vamos recuperar o parametro (param) atraves do FacesContext que é por onde consegue todas as informações do JSF
+	    String codigoemail = FacesContext.getCurrentInstance().getExternalContext()
+	    		.getRequestParameterMap().get("codigoemail");
+	    
+	    // Atribuir o id email na variavel removerEmail
+	    EmailUsuarioPesssoa removerEmail = new EmailUsuarioPesssoa();
+	    removerEmail.setId(Long.parseLong(codigoemail));
+	    
+	    // Deletar por id usando o dao
+	    daoEmail.deletarPorId(removerEmail);
+	    
+	    //Captura o id e remove da lista de emails da memória
+	    usuarioPessoa.getEmails().remove(removerEmail);
+	    
+	    // Criando a mensagem de removido e-mail com sucesso
+	    FacesContext.getCurrentInstance().addMessage(null, 
+	    		new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Email removido com Sucesso!"));
+	}
 
 }
