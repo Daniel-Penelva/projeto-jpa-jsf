@@ -21,7 +21,7 @@
 	</h:form>
 
 	<h:form id="formulario">
-		<p:messages autoUpdate="true" showDetail="true" showSummary="false" id="msg" />
+		<p:growl autoUpdate="true" showDetail="true" showSummary="false" id="msg" />
 
 		<p:panelGrid columns="2">
 
@@ -29,10 +29,14 @@
 			<p:outputLabel value="#{telefoneManagedBean.usuarioPessoa.nome}" />
 
 			<p:outputLabel>Número:</p:outputLabel>
-			<p:inputText value="#{telefoneManagedBean.telefone.numero}" required="true" requiredMessage="Informe número de telefone"/>
+			<p:inputMask value="#{telefoneManagedBean.telefone.numero}" mask="(99) 9999-9999" required="true" requiredMessage="Informe número de telefone"/>
 
 			<p:outputLabel>Tipo:</p:outputLabel>
-			<p:inputText value="#{telefoneManagedBean.telefone.tipo}" required="true" requiredMessage="Informe o tipo de telefone"/>
+			<p:selectOneMenu value="#{telefoneManagedBean.telefone.tipo}" required="true" requiredMessage="Informe o tipo de telefone">
+				<f:selectItem itemValue="CELULAR" itemLabel="Celular"/>
+				<f:selectItem itemValue="RESIDENCIAL" itemLabel="Residencial"/>
+				<f:selectItem itemValue="TRABALHO" itemLabel="Trabalho"/>
+			</p:selectOneMenu>
 
 		</p:panelGrid>
 
@@ -46,22 +50,23 @@
 	</h:form>
 
 	<h:form id="formTelefones">
+		
 		<p:dataTable id="tabelaFone" value="#{telefoneManagedBean.usuarioPessoa.telefones}" var="fone" border="2" cellpadding="15">
 			<f:facet name="header">Lista de Telefones</f:facet>
 
-			<p:column headerText="Id">
+			<p:column headerText="Id" width="50px;">
 				<h:outputText value="#{fone.id}" />
 			</p:column>
 
-			<p:column headerText="Número">
+			<p:column headerText="Número" width="290px;">
 				<h:outputText value="#{fone.numero}" />
 			</p:column>
 
-			<p:column headerText="Tipo">
+			<p:column headerText="Tipo" width="190px;">
 				<h:outputText value="#{fone.tipo}" />
 			</p:column>
 
-			<p:column headerText="Remover">
+			<p:column headerText="Remover" width="50px;">
 				<p:commandLink immediate="true" ajax="false" action="#{telefoneManagedBean.removeTelefone}" >
 					<h:graphicImage url="resources/img/delete.png" />
 					<f:setPropertyActionListener value="#{fone}" target="#{telefoneManagedBean.telefone}" />
@@ -69,6 +74,7 @@
 			</p:column>
 
 		</p:dataTable>
+		
 	</h:form>
 
 </h:body>
