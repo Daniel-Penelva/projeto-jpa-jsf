@@ -1,5 +1,9 @@
 package br.com.projetoJpaJsf.dao;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 import br.com.projetoJpaJsf.model.UsuarioPessoa;
 
 public class DaoUsuario<E> extends DaoGeneric<UsuarioPessoa>{
@@ -15,6 +19,12 @@ public class DaoUsuario<E> extends DaoGeneric<UsuarioPessoa>{
 		getEntityManager().getTransaction().commit();
 		
 		super.deletarPorId(pessoa);
+	}
+
+	public List<UsuarioPessoa> pesquisar(String campoPesquisa) {
+		
+		Query query = super.getEntityManager().createQuery("FROM UsuarioPessoa WHERE nome LIKE '%"+campoPesquisa+"%' ");
+		return query.getResultList();
 	}
 
 }

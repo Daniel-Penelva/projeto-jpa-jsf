@@ -43,6 +43,8 @@ public class UsuarioPessoaManagedBean {
 	
 	private EmailUsuarioPesssoa emailUser = new EmailUsuarioPesssoa(); 
 	private DaoEmail<EmailUsuarioPesssoa> daoEmail = new DaoEmail<EmailUsuarioPesssoa>();
+	
+	private String campoPesquisa;
 
 	/*
 	 * Depois que esse managed bean é construido na memória será executado apenas
@@ -100,6 +102,15 @@ public class UsuarioPessoaManagedBean {
 	public EmailUsuarioPesssoa getEmailUser() {
 		return emailUser;
 	}
+	
+	public void setCampoPesquisa(String campoPesquisa) {
+		this.campoPesquisa = campoPesquisa;
+	}
+	
+	public String getCampoPesquisa() {
+		return campoPesquisa;
+	}
+	
 
 	/* Action que serão chamadas na tela */
 	public String salvar() {
@@ -238,6 +249,10 @@ public class UsuarioPessoaManagedBean {
 	    // Criando a mensagem de removido e-mail com sucesso
 	    FacesContext.getCurrentInstance().addMessage(null, 
 	    		new FacesMessage(FacesMessage.SEVERITY_INFO, "Informação: ", "Email removido com Sucesso!"));
+	}
+	
+	public void pesquisar(){
+		list = daoGeneric.pesquisar(campoPesquisa);
 	}
 
 }

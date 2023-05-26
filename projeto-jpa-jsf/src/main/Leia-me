@@ -439,7 +439,13 @@ para os telefones e para os emails. O orphanRemoval garante um delete em cascade
 uma pessoa vai ser deletado em cascata o email e o telefone dessa pessoa.
 
 Com essas anotações facilita a implementação do dao, no caso, em DaoUsuario não vai mais precisar criar a query para
-deletar e vamos utilizar a propria funcionalidade do JPA para fazer essa remoção dos dados. 
+deletar e vamos utilizar a propria funcionalidade do JPA para fazer essa remoção dos dados.
+
+-----------------------------------------------------------------
+
+Vale ressaltar que nessa implementação de consulta e filtro por nome, no arquivo de primefaces no componente commandButton
+vamos utilizar o atributo e o valor 'update="formtable"' para atualizar o resultado no formulário da tabela, ou seja, 
+estamos referenciando o carregamento do resultado na tabela cujo o id é "formtable". 
 
  
  
