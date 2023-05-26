@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -40,10 +41,10 @@ public class UsuarioPessoa {
 	 * 
 	 * Dica: Sempre inicie a lista para evitar nullPointerException
 	 */
-	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<TelefoneUsuarioPesssoa> telefones = new ArrayList<TelefoneUsuarioPesssoa>();
 	
-	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<EmailUsuarioPesssoa> emails = new ArrayList<EmailUsuarioPesssoa>();
 	
 	/* Campos de CEP */

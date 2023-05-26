@@ -423,5 +423,23 @@ Lêem cada linha de texto da resposta HTTP e as adicionam ao objeto jsonCep do t
 ser adicionado ao nosso objeto de usuário do nosso managedbean (UsuarioPessoaManagedBean), pois é ele que 
 controla a tela inteira. Ou seja quando for clicado no email tem que setar o usuário (id dele) que vai ser jogado
 para a variável 'usuarioPessoa' lá no 'UsuarioPessoaManagedBean'.
+
+---------------------------------------------------------------
+
+Bom saber:
+
+@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true)
+private List<TelefoneUsuarioPesssoa> telefones = new ArrayList<TelefoneUsuarioPesssoa>();
+	
+@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE, orphanRemoval = true)
+private List<EmailUsuarioPesssoa> emails = new ArrayList<EmailUsuarioPesssoa>();
+
+As anotações acima declaradas nos respectivos atributos na classe UsuarioPessoa está sendo mapeada com Cascade remove
+para os telefones e para os emails. O orphanRemoval garante um delete em cascade (cascata), ou seja, se deletar 
+uma pessoa vai ser deletado em cascata o email e o telefone dessa pessoa.
+
+Com essas anotações facilita a implementação do dao, no caso, em DaoUsuario não vai mais precisar criar a query para
+deletar e vamos utilizar a propria funcionalidade do JPA para fazer essa remoção dos dados. 
+
  
  
