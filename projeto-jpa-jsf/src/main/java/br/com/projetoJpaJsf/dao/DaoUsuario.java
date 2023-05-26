@@ -13,6 +13,10 @@ public class DaoUsuario<E> extends DaoGeneric<UsuarioPessoa>{
 		
 		// getEntityManger inicia a transação | executeUpdate() ele atualiza ou deleta
 		getEntityManager().createNativeQuery(sqlDeleteFone).executeUpdate();
+		
+		String sqlDeleteEmail = "delete from emailusuariopesssoa where usuariopessoa_id = " + pessoa.getId();
+		getEntityManager().createNativeQuery(sqlDeleteEmail).executeUpdate();
+		
 		getEntityManager().getTransaction().commit();
 		
 		super.deletarPorId(pessoa);

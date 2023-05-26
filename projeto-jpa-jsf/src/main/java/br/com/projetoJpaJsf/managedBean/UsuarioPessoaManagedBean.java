@@ -124,7 +124,7 @@ public class UsuarioPessoaManagedBean {
 		try {
 			
 			//daoGeneric.removerUsuario(usuarioPessoa);
-			daoGeneric.deletarPorId(usuarioPessoa);
+			daoGeneric.removerUsuario(usuarioPessoa);
 
 			// exclui o usuário da lista
 			list.remove(usuarioPessoa);
