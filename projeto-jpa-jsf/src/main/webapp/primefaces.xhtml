@@ -108,12 +108,14 @@
 		<br />
 		<br />
 		
+		<!-- Campo de Pesquisa de Usuário -->
+		
 		<h:form>
 			<p:panel header="Pesquisar Pessoa">
+				<p:outputLabel value="Nome:" />
 				<p:panelGrid columns="3">
-					<p:outputLabel value="Nome:" />
 					<p:inputText value="#{usuarioPessoaManagedBean.campoPesquisa}"/>
-					<p:commandButton value="Pesquisar" actionListener="#{usuarioPessoaManagedBean.pesquisar}" update="formtable"/>
+					<p:commandButton value="Pesquisar" actionListener="#{usuarioPessoaManagedBean.pesquisar}" update="formtable, :graficosalario"/>
 				</p:panelGrid>
 			</p:panel>
 		</h:form>
@@ -225,14 +227,14 @@
 			</p:dataTable>
 			
 		</p:dialog>
-				  
+		  
 	</h:form>
 	
 	<br />
 	<br />
 	
 	<!-- Gráfico de Salários dos usuários -->
-	<p:chart type="bar" model="#{usuarioPessoaManagedBean.barChartModel}"></p:chart>
+	<p:chart id="graficosalario" type="bar" model="#{usuarioPessoaManagedBean.barChartModel}" />
 
 </h:body>
 

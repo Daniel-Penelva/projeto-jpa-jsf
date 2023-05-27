@@ -55,8 +55,13 @@ public class UsuarioPessoaManagedBean {
 	 */
 	@PostConstruct
 	public void init() {
+		
 		list = daoGeneric.listarTodos(UsuarioPessoa.class);
 		
+		montarGrafico();
+	}
+
+	private void montarGrafico() {
 		//Para cada linha de usuário tem que iniciar um objeto ChartSeries - Grupo de usuários
 		ChartSeries userSalario = new ChartSeries();
 		
@@ -72,7 +77,7 @@ public class UsuarioPessoaManagedBean {
 		barChartModel.addSeries(userSalario);
 		
 		// Título
-		barChartModel.setTitle("Gráfico de Salário");
+		barChartModel.setTitle("Gráfico de Salários");
 	}
 
 	/*
@@ -253,6 +258,7 @@ public class UsuarioPessoaManagedBean {
 	
 	public void pesquisar(){
 		list = daoGeneric.pesquisar(campoPesquisa);
+		montarGrafico();
 	}
 
 }
