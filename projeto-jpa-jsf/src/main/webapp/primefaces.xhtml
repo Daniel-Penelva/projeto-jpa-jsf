@@ -27,6 +27,12 @@
 			<p:outputLabel>Id:</p:outputLabel>
 			<p:inputText readonly="true" value="#{usuarioPessoaManagedBean.usuarioPessoa.id}"/>
 			
+			<p:outputLabel>Foto:</p:outputLabel>
+			<p:fileUpload mode="advanced" label="Adicionar" auto="true" update="imagem" listener="#{usuarioPessoaManagedBean.upload}"/>
+			
+			<p:outputLabel>Imagem Foto:</p:outputLabel>
+			<h:graphicImage id="imagem" value="#{usuarioPessoaManagedBean.usuarioPessoa.imagem}"/>
+			
 			<p:outputLabel>Nome:</p:outputLabel>
 			<p:inputText value="#{usuarioPessoaManagedBean.usuarioPessoa.nome}" id="idnome" required="true" requiredMessage="Infome o nome">
 				<p:watermark value="Informe o nome" for="idnome"/>

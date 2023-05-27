@@ -266,7 +266,7 @@ public class UsuarioPessoaManagedBean {
 	public void upload(FileUploadEvent image){
 		
 		// Converter para uma base64 - converter binário para String
-		String imagem = "data:image/png;base64" + DatatypeConverter.printBase64Binary(image.getFile().getContent());
+		String imagem = "data:image/png;base64," + DatatypeConverter.printBase64Binary(image.getFile().getContent());
 		
 		// Setar para o objeto pessoa o atributo image
 		usuarioPessoa.setImagem(imagem);
