@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -59,6 +60,9 @@ public class UsuarioPessoa {
 	private String gia;
 	
 	private Double salario;
+	
+	@Column(columnDefinition = "text")
+	private String imagem;
 	
    /* Setters e Getters */
 	public Long getId() {
@@ -211,6 +215,14 @@ public class UsuarioPessoa {
 
 	public void setSalario(Double salario) {
 		this.salario = salario;
+	}
+	
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+	
+	public String getImagem() {
+		return imagem;
 	}
 
 	@Override
