@@ -164,6 +164,11 @@
 					<h:outputText value="#{user.login}"/>
 				</p:column>
 				
+				<p:column headerText="Baixar Foto" style="width:90px;">
+					<p:commandLink value="Baixar" immediate="true" actionListener="#{usuarioPessoaManagedBean.download}"/>
+					<f:param name="fileDownloadId" value="#{user.id}"/>
+				</p:column>
+				
 				<p:column headerText="Editar" style="width:40px;">
 					<center>
 						<p:commandLink ajax="false">

@@ -445,7 +445,12 @@ deletar e vamos utilizar a propria funcionalidade do JPA para fazer essa remoç�
 
 Vale ressaltar que nessa implementação de consulta e filtro por nome, no arquivo de primefaces no componente commandButton
 vamos utilizar o atributo e o valor 'update="formtable"' para atualizar o resultado no formulário da tabela, ou seja, 
-estamos referenciando o carregamento do resultado na tabela cujo o id é "formtable". 
+estamos referenciando o carregamento do resultado na tabela cujo o id é "formtable".
+
+------------------------------------------------------------------
+
+Para fazer o download da imagem temos que pegar o parametro <f:param name="fileDownloadId" value="#{user.id}"/>, no caso, 
+o 'fileDownloadId'.
 
  
  

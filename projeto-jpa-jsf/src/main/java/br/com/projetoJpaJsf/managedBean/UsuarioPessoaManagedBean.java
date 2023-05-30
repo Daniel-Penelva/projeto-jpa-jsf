@@ -1,12 +1,14 @@
 package br.com.projetoJpaJsf.managedBean;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -14,8 +16,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.exception.ConstraintViolationException;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.chart.BarChartModel;
@@ -270,6 +275,43 @@ public class UsuarioPessoaManagedBean {
 		
 		// Setar para o objeto pessoa o atributo image
 		usuarioPessoa.setImagem(imagem);
+	}
+	
+	public void download() throws IOException{
+		
+		// Criando um Map para capturar o parametro da tela de download
+		Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		
+		// Capturando o parametro do componente (no caso é o id da pessoa) de download da tela
+		String fileDownloadId = params.get("fileDownloadId");
+			
+		// Consulta no banco o id do usuario pessoa
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(Long.parseLong(fileDownloadId), UsuarioPessoa.class);
+			
+		// Preparar a imagem para o download
+		byte[] imagem = new Base64().decodeBase64(pessoa.getImagem().split("\\,")[1]);
+			
+		// Dar a resposta para o JSF
+		HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+			
+		// Adiciona a resposta pelo método header cujo o parametro é  por padrão sempre 'Content-Disposition' e 'attachment; filename=download.png'.
+		// Esse parametros diz respeito que o download vai ser feito de forma direta, ou seja, não vai para outra tela.
+		response.addHeader("Content-Disposition","attachment; filename=download.png");
+			
+		// Responde o conteúdo  - o valor do parametro diz respeito ao formato do arquivo
+		response.setContentType("application/octet-stream");
+			
+		// Responde o tamanho do conteúdo (no caso o tamanho do arquivo)
+		response.setContentLength(imagem.length);
+			
+		// Escreve o objeto imagem 
+		response.getOutputStream().write(imagem);
+			
+		// Finaliza a resposta fazendo um flush
+		response.getOutputStream().flush();
+			
+		// Aqui avisa ao JSF para capturar todo o contexto da resposta que já está completa.
+		FacesContext.getCurrentInstance().responseComplete();
 	}
 
 }

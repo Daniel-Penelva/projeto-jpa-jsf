@@ -39,11 +39,12 @@ public class DaoGeneric<E> {
 	}
 
 	public E pesquisar(Long id, Class<E> entidade) {
-		
+
 		// Para limpar o que está na memória pq estava dando erro por causa de cache.
 		entityManager.clear();
-		
-		E pesquisa = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id).getSingleResult();
+
+		E pesquisa = (E) entityManager.createQuery("from " + entidade.getSimpleName() + " where id = " + id)
+				.getSingleResult();
 		return pesquisa;
 	}
 
@@ -65,24 +66,24 @@ public class DaoGeneric<E> {
 		return entidadeSalva;
 	}
 
-	public void deletarPorId(E entidade) throws Exception{
-		
-		    // Obtem o ID do objeto PK
-			Object id = HibernateUtil.getPrimaryKey(entidade);
-			
-			/* Captura uma transação para a criação do entityManager */
-			EntityTransaction transaction = entityManager.getTransaction();
+	public void deletarPorId(E entidade) throws Exception {
 
-			/* Começa uma Transação no banco de dados */
-			transaction.begin();
+		// Obtem o ID do objeto PK
+		Object id = HibernateUtil.getPrimaryKey(entidade);
 
-			if (id != null) {
-				/* Para deletar usa-se o método executeUpdate() */
-				entityManager.createQuery("delete from " + entidade.getClass().getName() + " where id = " + id)
-						.executeUpdate();
+		/* Captura uma transação para a criação do entityManager */
+		EntityTransaction transaction = entityManager.getTransaction();
 
-				transaction.commit();
-			}
+		/* Começa uma Transação no banco de dados */
+		transaction.begin();
+
+		if (id != null) {
+			/* Para deletar usa-se o método executeUpdate() */
+			entityManager.createQuery("delete from " + entidade.getClass().getName() + " where id = " + id)
+					.executeUpdate();
+
+			transaction.commit();
+		}
 	}
 
 	public List<E> listarTodos(Class<E> entidade) {
@@ -92,19 +93,37 @@ public class DaoGeneric<E> {
 
 		transaction.begin();
 
-		/* entidade.getName() é o UsuarioPessoa
-		 * A função getResultList() vai listar todos os usuários no banco de dados */
+		/*
+		 * entidade.getName() é o UsuarioPessoa A função getResultList() vai listar
+		 * todos os usuários no banco de dados
+		 */
 		List<E> lista = entityManager.createQuery("from " + entidade.getName()).getResultList();
 
 		transaction.commit();
 
 		return lista;
 	}
-	
-	
-	/* Sendo public o EntityManager é possível acessar de outras partes do projeto */
+
+	/*
+	 * Sendo public o EntityManager é possível acessar de outras partes do projeto
+	 */
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
+
+	public E consultar(Class<E> entidade, String primaryKey) {
+
+		EntityTransaction entityTransaction = entityManager.getTransaction();
+
+		entityTransaction.begin();
+
+		// Lembrando que temos que passar o id com o tipo Long
+		E objeto = (E) entityManager.find(entidade, Long.parseLong(primaryKey));
+
+		entityTransaction.commit();
+
+		return objeto;
+	}
+	
 
 }

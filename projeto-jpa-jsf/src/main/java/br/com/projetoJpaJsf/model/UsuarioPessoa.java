@@ -224,10 +224,15 @@ public class UsuarioPessoa {
 	public String getImagem() {
 		return imagem;
 	}
-
+	
+	
 	@Override
 	public String toString() {
-		return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", login=" + login + ", senha=" + senha + ", idade=" + idade + "]";
+		return "UsuarioPessoa [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", login=" + login
+				+ ", senha=" + senha + ", idade=" + idade + ", sexo=" + sexo + ", telefones=" + telefones + ", emails="
+				+ emails + ", cep=" + cep + ", logradouro=" + logradouro + ", complemento=" + complemento + ", bairro="
+				+ bairro + ", localidade=" + localidade + ", uf=" + uf + ", unidade=" + unidade + ", ibge=" + ibge
+				+ ", gia=" + gia + ", salario=" + salario + ", imagem=" + imagem + "]";
 	}
 
 	@Override
