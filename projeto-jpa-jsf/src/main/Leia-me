@@ -452,5 +452,21 @@ estamos referenciando o carregamento do resultado na tabela cujo o id é "formta
 Para fazer o download da imagem temos que pegar o parametro <f:param name="fileDownloadId" value="#{user.id}"/>, no caso, 
 o 'fileDownloadId'.
 
- 
+-----------------------------------------------------------------
+Para criar a paginação vamos extender a Classe LazyDataModel que obrigatoriamente tem que ser utilizado o método
+load(). Como funciona esse método? Quando o usuário na tela passar para a proxima paginação vai ser injetado 
+a quantidade de paginação que será utilizado, por exemplo, os valores de parametro do método load, 'first' e o 'pageSize', 
+representa essa quantidade de paginação, ou seja, digamos que a tabela vai ter de 0 à 5 paginações de uma quantidade 
+de cinco registros. O valor de parametro 'sortField' e 'sortOrder' é para ordenar as fields e ordenar outro tipos de dados.
+
+A classe substitui dois métodos da classe LazyDataModel:
+
+count: esse método é responsável por retornar o número total de registros que satisfazem os critérios de filtragem. 
+No código fornecido, o método está apenas retornando zero, mas você deve implementar a lógica correta para contar os 
+registros com base nos filtros fornecidos.
+
+load: esse método é responsável por carregar os dados da tabela com base nos parâmetros fornecidos. No código 
+fornecido, ele realiza uma consulta ao banco de dados utilizando a cláusula SQL definida e os parâmetros first e 
+pageSize para implementar a paginação dos resultados. Em seguida, ele define o tamanho da página, o número total de 
+registros e retorna a lista de registros carregados.
  
